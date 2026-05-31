@@ -1,13 +1,15 @@
 const codes = document.querySelectorAll(".code");
 
-codes[0].focus();
+
+window.onload = () => {
+  document.getElementById("code-1").focus();
+};
 
 codes.forEach((code, index) => {
 
   code.addEventListener("input", (e) => {
-    let value = e.target.value;
+    const value = e.target.value;
 
-    // Only numbers allowed
     if (!/^[0-9]$/.test(value)) {
       e.target.value = "";
       return;
@@ -22,13 +24,13 @@ codes.forEach((code, index) => {
   code.addEventListener("keydown", (e) => {
 
     if (e.key === "Backspace") {
-
       if (code.value === "" && index > 0) {
         codes[index - 1].focus();
+      } else {
+        code.value = "";
       }
-
-      code.value = "";
     }
+
   });
 
 });
